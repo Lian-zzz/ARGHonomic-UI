@@ -135,6 +135,26 @@ MonoBehaviour:
   company: HTC
   priority: 0
   required: 0
+--- !u!114 &-7860404927284228243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5315f812f023cf4ebf26f7e5d2d70f2, type: 3}
+  m_Name: HPReverbG2ControllerProfile Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: HP Reverb G2 Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.hpreverb
+  openxrExtensionStrings: XR_EXT_hp_mixed_reality_controller
+  company: Unity
+  priority: 0
+  required: 0
 --- !u!114 &-7551690129761119510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +168,7 @@ MonoBehaviour:
   m_Name: VIVE_FacialTracking_OpenXR_API Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: Facial Tracking
   version: 0.0.1
   featureIdInternal: com.htc.openxr.facialtracking.feature
@@ -155,6 +176,9 @@ MonoBehaviour:
   company: HTC
   priority: 0
   required: 0
+  m_XrInstance: 0
+  m_XrSession: 0
+  m_systemid: 0
   m_expressionHandle: 0
   m_expressionHandle_Lip: 0
 --- !u!114 &-7149213652039741438
@@ -350,6 +374,7 @@ MonoBehaviour:
   - visibleName: Quest Pro
     manifestName: cambria
     enabled: 1
+  forceRemoveInternetPermission: 1
 --- !u!114 &-2586954831240282422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +409,7 @@ MonoBehaviour:
   m_Name: HtcViveHandInteractionInputFeature Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: HTC Vive hand interaction Support
   version: 0.0.1
   featureIdInternal: com.htc.openxr.feature.input.htcvivehandinteraction
@@ -471,6 +497,26 @@ MonoBehaviour:
   company: HTC
   priority: 0
   required: 0
+--- !u!114 &-974520537354768925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5019471fb2174e5c852ecd4047163007, type: 3}
+  m_Name: HandInteractionProfile Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Hand Interaction Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.handinteraction
+  openxrExtensionStrings: XR_EXT_hand_interaction
+  company: Unity
+  priority: 0
+  required: 0
 --- !u!114 &-530230815605441031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,7 +531,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   features:
   - {fileID: -5943036117607333607}
+  - {fileID: 1763371470581754896}
   - {fileID: -1389246705378771102}
+  - {fileID: -466517316129270009}
+  - {fileID: -974520537354768925}
   - {fileID: -7149213652039741438}
   - {fileID: -2717468165808294827}
   - {fileID: -8434063487705424331}
@@ -493,6 +542,7 @@ MonoBehaviour:
   - {fileID: -5712955262165644393}
   - {fileID: 7133567445441401019}
   - {fileID: 2282981048599592397}
+  - {fileID: 4462889068660570661}
   - {fileID: 1631822855378650888}
   - {fileID: -2586954831240282422}
   - {fileID: -6340983740567054924}
@@ -507,6 +557,26 @@ MonoBehaviour:
   - {fileID: -6831955964910739643}
   m_renderMode: 1
   m_depthSubmissionMode: 0
+--- !u!114 &-466517316129270009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a24be4b5ebfe5f4d8ed1de9b25cb7aa, type: 3}
+  m_Name: HandCommonPosesInteraction Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Hand Interaction Poses
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.handinteractionposes
+  openxrExtensionStrings: XR_EXT_hand_interaction
+  company: Unity
+  priority: 0
+  required: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,22 +628,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   features:
   - {fileID: 2802533215349215943}
+  - {fileID: 1371949025844107102}
   - {fileID: -1677168969388651085}
-  - {fileID: 5689893802999520487}
+  - {fileID: 5125025618400645326}
+  - {fileID: 4374377324411145503}
+  - {fileID: -7860404927284228243}
   - {fileID: -3598576974030318761}
-  - {fileID: 4207058975809779604}
-  - {fileID: 830261719055711422}
-  - {fileID: -1766231162858405240}
   - {fileID: 1735444932500410431}
   - {fileID: 3122803858294127993}
   - {fileID: 7249617417898163795}
   - {fileID: -4316589285590530375}
   - {fileID: 1950449957653107030}
   - {fileID: -8382658582941071966}
+  - {fileID: 5238825008371866542}
   - {fileID: -2954027793162942816}
-  - {fileID: 8958332148806042025}
   - {fileID: -8864294442800916170}
-  - {fileID: -7551690129761119510}
   m_renderMode: 1
   m_depthSubmissionMode: 0
 --- !u!114 &830261719055711422
@@ -589,6 +658,7 @@ MonoBehaviour:
   m_Name: HtcViveFocus3InputFeature Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: HTC Vive Focus3 Controller Support
   version: 0.0.2
   featureIdInternal: com.htc.openxr.feature.input.htcvivefocus3
@@ -596,6 +666,39 @@ MonoBehaviour:
   company: HTC
   priority: 0
   required: 0
+--- !u!114 &1371949025844107102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5b5af5107e35a43818d5411328bfc3, type: 3}
+  m_Name: DPadInteraction Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: D-Pad Binding
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.dpadinteraction
+  openxrExtensionStrings: XR_KHR_binding_modification XR_EXT_dpad_binding
+  company: Unity
+  priority: 0
+  required: 0
+  forceThresholdLeft: 0.5
+  forceThresholdReleaseLeft: 0.4
+  centerRegionLeft: 0.5
+  wedgeAngleLeft: 1.5707964
+  isStickyLeft: 0
+  forceThresholdRight: 0.5
+  forceThresholdReleaseRight: 0.4
+  centerRegionRight: 0.5
+  wedgeAngleRight: 1.5707964
+  isStickyRight: 0
+  extensionStrings:
+  - XR_KHR_binding_modification
+  - XR_EXT_dpad_binding
 --- !u!114 &1631822855378650888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,6 +741,39 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &1763371470581754896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5b5af5107e35a43818d5411328bfc3, type: 3}
+  m_Name: DPadInteraction Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: D-Pad Binding
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.dpadinteraction
+  openxrExtensionStrings: XR_KHR_binding_modification XR_EXT_dpad_binding
+  company: Unity
+  priority: 0
+  required: 0
+  forceThresholdLeft: 0.5
+  forceThresholdReleaseLeft: 0.4
+  centerRegionLeft: 0.5
+  wedgeAngleLeft: 1.5707964
+  isStickyLeft: 0
+  forceThresholdRight: 0.5
+  forceThresholdReleaseRight: 0.4
+  centerRegionRight: 0.5
+  wedgeAngleRight: 1.5707964
+  isStickyRight: 0
+  extensionStrings:
+  - XR_KHR_binding_modification
+  - XR_EXT_dpad_binding
 --- !u!114 &1950449957653107030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,11 +868,92 @@ MonoBehaviour:
   m_Name: HtcViveCosmosInputFeature Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: HTC Vive Cosmos Controller Support
   version: 0.0.2
   featureIdInternal: com.htc.openxr.feature.input.htcvivecosmos
   openxrExtensionStrings: XR_HTC_vive_cosmos_controller_interaction XR_EXT_palm_pose
   company: HTC
+  priority: 0
+  required: 0
+--- !u!114 &4374377324411145503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5019471fb2174e5c852ecd4047163007, type: 3}
+  m_Name: HandInteractionProfile Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Hand Interaction Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.handinteraction
+  openxrExtensionStrings: XR_EXT_hand_interaction
+  company: Unity
+  priority: 0
+  required: 0
+--- !u!114 &4462889068660570661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f028123e2efe1d443875bc7609b4a98b, type: 3}
+  m_Name: PalmPoseInteraction Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Palm Pose
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.palmpose
+  openxrExtensionStrings: XR_EXT_palm_pose
+  company: Unity
+  priority: 0
+  required: 0
+--- !u!114 &5125025618400645326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a24be4b5ebfe5f4d8ed1de9b25cb7aa, type: 3}
+  m_Name: HandCommonPosesInteraction Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Hand Interaction Poses
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.handinteractionposes
+  openxrExtensionStrings: XR_EXT_hand_interaction
+  company: Unity
+  priority: 0
+  required: 0
+--- !u!114 &5238825008371866542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f028123e2efe1d443875bc7609b4a98b, type: 3}
+  m_Name: PalmPoseInteraction Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Palm Pose
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.palmpose
+  openxrExtensionStrings: XR_EXT_palm_pose
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &5689893802999520487
@@ -752,6 +969,7 @@ MonoBehaviour:
   m_Name: HandTracking_OpenXR_API Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: Hand Tracking
   version: 0.0.1
   featureIdInternal: com.company.openxr.handtracking.feature
@@ -759,6 +977,9 @@ MonoBehaviour:
   company: HTC
   priority: 0
   required: 0
+  m_xrInstance: 0
+  m_xrSession: 0
+  m_systemId: 0
   m_space: 0
   m_leftHandle: 0
   m_rightHandle: 0
@@ -877,6 +1098,7 @@ MonoBehaviour:
   m_Name: SceneUnderstanding_OpenXR_API Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: Scene Understanding
   version: 0.0.1
   featureIdInternal: com.htc.openxr.sceneunderstanding.feature
@@ -884,6 +1106,6 @@ MonoBehaviour:
   company: HTC
   priority: 0
   required: 0
-  m_XrInstance: 0
+  m_XrInstance: 2208571161392
   m_XrSession: 0
   m_systemid: 0
