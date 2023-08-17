@@ -24,11 +24,11 @@ namespace UnityEngine.XR.Content.Interaction
 
         [SerializeField]
         [Tooltip("The offset of the slider at value '1'")]
-        float m_MaxPosition = 0.04f;
+        float m_MaxPosition = 5.5f;
 
         [SerializeField]
         [Tooltip("The offset of the slider at value '0'")]
-        float m_MinPosition = -0.04f;
+        float m_MinPosition = -5.5f;
 
         [SerializeField]
         [Tooltip("Events to trigger when the slider is moved")]
@@ -113,7 +113,7 @@ namespace UnityEngine.XR.Content.Interaction
             // get the transform from world space to local space
             var localPosition = transform.InverseTransformPoint(m_Interactor.GetAttachTransform(this).position);
             // note: the direction would be inversed without the -... 
-            var sliderValue = Mathf.Clamp01((- localPosition.z  - m_MinPosition) / (m_MaxPosition - m_MinPosition));
+            var sliderValue = Mathf.Clamp01((- localPosition.x  - m_MinPosition) / (m_MaxPosition - m_MinPosition));
             
             
             int sliderIntValue = Mathf.RoundToInt(sliderValue * max_Value);            
@@ -131,7 +131,7 @@ namespace UnityEngine.XR.Content.Interaction
                 return;
 
             var handlePos = m_Handle.localPosition;
-            handlePos.z = Mathf.Lerp(m_MinPosition, m_MaxPosition, value);
+            handlePos.x = Mathf.Lerp(m_MinPosition, m_MaxPosition, value);
             m_Handle.localPosition = handlePos;
         }
 
