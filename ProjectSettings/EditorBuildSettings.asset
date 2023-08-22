@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Buttons.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/backup.unity
+    path: Assets/Scenes/old/backup.unity
     guid: 272f72f976941544bace2228899529cd
   m_configObjects:
     com.htc.upm.wave.xrsdk.xrsettings: {fileID: 11400000, guid: c243f54ce4cdd564c8e83335565a175d, type: 2}

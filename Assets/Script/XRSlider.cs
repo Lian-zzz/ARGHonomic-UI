@@ -43,6 +43,8 @@ namespace UnityEngine.XR.Content.Interaction
 
         IXRSelectInteractor m_Interactor;
 
+        private Outline outline; 
+
         /// <summary>
         /// The value of the slider
         /// </summary>
@@ -64,8 +66,15 @@ namespace UnityEngine.XR.Content.Interaction
         void Start()
         {
             max_ValueUI.text = "Max: " + max_Value;
+
             SetValue(m_Value);
             SetSliderPosition(m_Value);
+
+            if (m_Handle != null)
+            {
+                outline = m_Handle.GetComponent<Outline>(); 
+                outline.enabled = false;
+            }
         }
 
         protected override void OnEnable()
@@ -80,6 +89,14 @@ namespace UnityEngine.XR.Content.Interaction
             selectEntered.RemoveListener(StartGrab);
             selectExited.RemoveListener(EndGrab);
             base.OnDisable();
+        }
+
+        void Update()
+        {
+            if (outline != null)
+            {
+                outline.enabled = this.isHovered || this.isSelected ; 
+            }
         }
 
         void StartGrab(SelectEnterEventArgs args)
@@ -113,7 +130,7 @@ namespace UnityEngine.XR.Content.Interaction
             // get the transform from world space to local space
             var localPosition = transform.InverseTransformPoint(m_Interactor.GetAttachTransform(this).position);
             // note: the direction would be inversed without the -... 
-            var sliderValue = Mathf.Clamp01((- localPosition.x  - m_MinPosition) / (m_MaxPosition - m_MinPosition));
+            var sliderValue = Mathf.Clamp01((localPosition.x  - m_MinPosition) / (m_MaxPosition - m_MinPosition));
             
             
             int sliderIntValue = Mathf.RoundToInt(sliderValue * max_Value);            
@@ -154,5 +171,6 @@ namespace UnityEngine.XR.Content.Interaction
         {
             SetSliderPosition(m_Value);
         }
+
     }
 }

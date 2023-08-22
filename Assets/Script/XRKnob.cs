@@ -195,10 +195,18 @@ namespace UnityEngine.XR.Content.Interaction
         /// </summary>
         public ValueChangeEvent onValueChange => m_OnValueChange;
 
+        private Outline outline; 
+
         void Start()
         {
             SetValue(m_Value);
             SetKnobRotation(ValueToRotation());
+
+            if (m_Handle != null)
+            {
+                outline = m_Handle.GetComponent<Outline>(); 
+                outline.enabled = false;
+            }
         }
 
         protected override void OnEnable()
@@ -213,6 +221,14 @@ namespace UnityEngine.XR.Content.Interaction
             selectEntered.RemoveListener(StartGrab);
             selectExited.RemoveListener(EndGrab);
             base.OnDisable();
+        }
+
+        void Update()
+        {
+            if (outline != null)
+            {
+                outline.enabled = this.isHovered || this.isSelected ; 
+            }
         }
 
         void StartGrab(SelectEnterEventArgs args)

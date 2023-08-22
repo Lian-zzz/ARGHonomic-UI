@@ -8,69 +8,125 @@ public class PanelSwitchController : MonoBehaviour
 {
 
     [SerializeField] private GameObject[] panels;
-    [SerializeField] private Vector3 endPos;
+    [SerializeField] private Vector3[] positions;
 
     [SerializeField]
-    [Tooltip("The offset of the slider at value '1'")]
+    [Tooltip("Moving speed of the panels")]
     float speed = 2.5f;
 
-    Vector3 moveOffset = new Vector3(0,0,5); 
+    //[SerializeField] private Vector3 endPos;    
+    //Vector3 moveOffset = new Vector3(0.0f, 0.0f, 5.0f); 
+    //public int currentPanel = 0;
 
     public Button nextButton;
     public Button lastButton; 
 
-    private int currentPanel = 0;
+    [SerializeField] 
+    TextMeshProUGUI currentTime; 
+
+    
+    private float timer = 0.0f;
+    private bool timerOn = false;
+
+    public bool reorderFinished = false;
+    public bool resetFinished = false; 
+
     // Start is called before the first frame update
     void Start()
     {
+        this.PanelOrderReset();
         
+        //nextButton.onClick.AddListener(() => NextButtonOnClick());
+        //lastButton.onClick.AddListener(() => LastButtonOnClick());
+    }
+    void FixedUpdate()
+    {
+        if (timerOn)
+        {
+            timer += Time.deltaTime;
+
+        }
+        currentTime.text = "Time: " + timer.ToString("00.00") + "s"; 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void NextButtonOnClick()
     {
+        StartCoroutine( OnNext() );
+    }
+
+    public void LastButtonOnClick()
+    {
+        StartCoroutine( OnLast() );
+    }
+    public IEnumerator OnNext()
+    {
+        reorderFinished = false;
+        nextButton.interactable = false; 
+
+        this.ReorderOnNext(panels); 
+        yield return new WaitUntil(() => reorderFinished);
+
+        resetFinished = false; 
+        this.PanelOrderReset();
+        yield return new WaitUntil(() => resetFinished);
+
+        nextButton.interactable = true; 
+    }
+
+    public IEnumerator OnLast()
+    {
+        reorderFinished = false;
+        lastButton.interactable = false;
+
+        this.ReorderOnLast(panels); 
+        yield return new WaitUntil(() => reorderFinished);
+
+        resetFinished = false; 
+        this.PanelOrderReset();
+        yield return new WaitUntil(() => resetFinished);
+
+        lastButton.interactable = true;
+    }
+
+    public void PanelOrderReset()
+    {
+        timerOn = false;
+        Debug.Log(panels.ToString());
         
+        for (int i= 0; i < panels.Length; i++)
+        {
+            LeanTween.move(panels[i], positions[i], speed);
+        }       
+        timer = 0.0f;
+        timerOn = true; 
+        resetFinished = true; 
     }
 
-    public void OnNext()
+    public void ReorderOnNext(GameObject[] obj)
     {
-        // next button should only work when current panel is not the last one
-        if ( currentPanel != 3 )
+        int s = obj.Length - 1;
+        var t = obj[0];
+
+        for (int i = 0; i < s; i++)
         {
-            // loop to move the panels except current panel forward
-            for (int i = 0; i < 4; i++)
-            {
-                if ( i != currentPanel)
-                {
-                    LeanTween.move( panels[i], panels[i].transform.position - moveOffset, speed);
-                }
-                // else move the current panel to the end 
-                else 
-                {
-                    LeanTween.move( panels[i], endPos, speed);
-                }
-            }
+            obj[i] = obj[i+1];
         }
+        obj[s] = t;
+
+        reorderFinished = true;
     }
 
-    public void OnLast()
+    public void ReorderOnLast(GameObject[] obj)
     {
-        // last button should only work when current panel is not the first one
-        if ( currentPanel != 0 )
+        int s = obj.Length - 1;
+        var t = obj[s];
+        
+        for (int i = s; i > 0; i--)
         {
-            // loop to move the panels except last panel backward 
-            for (int i = 0; i < 4; i++)
-            {
-                if ( i != (currentPanel - 1))
-                {
-                    LeanTween.move( panels[i], panels[i].transform.position + moveOffset, speed);
-                }
-                // else move the last panel to the front
-                else 
-                {
-                    LeanTween.move( panels[i], new Vector3(0,0,0), speed);
-                }
-            }
+            obj[i] = obj[i-1];
         }
+        obj[0] = t;
+
+        reorderFinished = true;
     }
 }

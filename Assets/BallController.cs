@@ -8,10 +8,12 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using TMPro;
 using HTC.UnityPlugin.Vive;
 
-public class ball_animation : MonoBehaviour
+public class BallController : MonoBehaviour
 {
     public TextMeshProUGUI count;
     private Animation anim;
+    private Outline outline; 
+
     private int countValue = 0;
     private bool isHovered = false;
     bool pressed = false;
@@ -22,6 +24,8 @@ public class ball_animation : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animation>();
+        outline = GetComponent<Outline>(); 
+        outline.enabled = false; 
         //rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
         //InvokeRepeating("UpdatePerSecond", 0, 1.0f);
     }
@@ -31,6 +35,9 @@ public class ball_animation : MonoBehaviour
         //InputHelpers.IsPressed(rightHand, button, out pressed);
         pressed = ViveInput.GetPress(role, ControllerButton.Trigger);
         isHovered = gameObject.GetComponent<XRSimpleInteractable>().isHovered;
+
+        outline.enabled = isHovered; 
+
         if (pressed & isHovered)
         {  
             if (! (anim.isPlaying))

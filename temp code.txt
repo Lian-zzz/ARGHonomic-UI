@@ -1,0 +1,54 @@
+
+    public void OnNext()
+    {
+        timerOn = false;
+        // next button should only work when current panel is not the last one
+        if ( currentPanel != 3 )
+        {
+            // loop to move the panels except current panel forward
+            for (int i = 0; i < 3; i++)
+            {
+                if ( i != currentPanel)
+                {
+                    LeanTween.move(panels[i], panels[i].transform.position - moveOffset, speed);
+                }
+                // else move the current panel to the end 
+                else 
+                {
+                    LeanTween.move( panels[i], endPos, speed);
+                }
+            }
+
+            currentPanel ++;
+            timer = 0.0f;
+            timerOn = true;
+
+        }
+    }
+
+
+public void OnLast()
+    {
+        timerOn = false;
+        // last button should only work when current panel is not the first one
+        if ( currentPanel != 0 )
+        {
+            // loop to move the panels except last panel backward 
+            for (int i = 0; i < 3; i++)
+            {
+                if ( i != (currentPanel - 1))
+                {
+                    LeanTween.move( panels[i], panels[i].transform.position + moveOffset, speed);
+                }
+                // else move the last panel to the front
+                else 
+                {
+                    LeanTween.move( panels[i], new Vector3(0.0f, 0.0f,0.0f), speed);
+                }
+            }
+
+            currentPanel--;
+            timer = 0.0f;
+            timerOn = true;
+        }
+    }
