@@ -167,6 +167,22 @@ namespace UnityEngine.XR.Content.Interaction
             Gizmos.DrawLine(sliderMinPoint, sliderMaxPoint);
         }
 
+        public void UpdateFineness(FinenessLevel finenessLevel)
+        {
+            switch(finenessLevel)
+            {
+                case FinenessLevel.Low:
+                    max_Value = 5;
+                    break;
+                case FinenessLevel.Medium:
+                    max_Value = 10;
+                    break;
+                case FinenessLevel.High:
+                    max_Value = 15;
+                    break;
+            }
+        }
+
         void OnValidate()
         {
             SetSliderPosition(m_Value);

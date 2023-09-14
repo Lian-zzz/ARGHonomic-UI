@@ -432,6 +432,22 @@ namespace UnityEngine.XR.Content.Interaction
             }
         }
 
+        public void UpdateFineness(FinenessLevel finenessLevel)
+        {
+            switch(finenessLevel)
+            {
+                case FinenessLevel.Low:
+                    m_AngleIncrement = 90.0f;
+                    break;
+                case FinenessLevel.Medium:
+                    m_AngleIncrement = 54.0f;
+                    break;
+                case FinenessLevel.High:
+                    m_AngleIncrement = 27.0f;
+                    break;
+            }
+        }
+
         void OnValidate()
         {
             if (m_ClampedMotion)

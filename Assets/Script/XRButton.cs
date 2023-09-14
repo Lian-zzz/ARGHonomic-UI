@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using TMPro;
 using HTC.UnityPlugin.Vive;
 
-public class BallController : MonoBehaviour
+public class XRButton : MonoBehaviour
 {
     public TextMeshProUGUI count;
     private Animation anim;
@@ -48,6 +48,22 @@ public class BallController : MonoBehaviour
             }  
         }
 
+    }
+
+    public void UpdateFineness(FinenessLevel finenessLevel)
+    {
+        switch(finenessLevel)
+        {
+            case FinenessLevel.Low:
+                this.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                break;
+            case FinenessLevel.Medium:
+                this.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                break;
+            case FinenessLevel.High:
+                this.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
+                break;
+        }
     }
 
 /*     void UpdatePerSecond()
