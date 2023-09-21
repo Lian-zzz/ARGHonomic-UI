@@ -448,6 +448,20 @@ namespace UnityEngine.XR.Content.Interaction
             }
         }
 
+        public float GetAngleIncrement()
+        {
+            return m_AngleIncrement; 
+        }
+        public void UpdateTaskTarget(int i)
+        {
+
+        }
+
+        public void ResetTaskTarget()
+        {
+
+        }
+
         void OnValidate()
         {
             if (m_ClampedMotion)

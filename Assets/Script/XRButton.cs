@@ -66,6 +66,16 @@ public class XRButton : MonoBehaviour
         }
     }
 
+    public int GetCountValue()
+    {
+        return this.countValue; 
+    }
+
+    public void ResetTaskTarget()
+    {
+
+    }
+
 /*     void UpdatePerSecond()
     {
         isHovered = gameObject.GetComponent<XRSimpleInteractable>().isHovered;

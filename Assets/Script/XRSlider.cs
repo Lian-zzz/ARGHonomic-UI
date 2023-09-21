@@ -58,6 +58,8 @@ namespace UnityEngine.XR.Content.Interaction
             }
         }
 
+        public int sliderIntValue;
+
         /// <summary>
         /// Events to trigger when the slider is moved
         /// </summary>
@@ -133,7 +135,7 @@ namespace UnityEngine.XR.Content.Interaction
             var sliderValue = Mathf.Clamp01((localPosition.x  - m_MinPosition) / (m_MaxPosition - m_MinPosition));
             
             
-            int sliderIntValue = Mathf.RoundToInt(sliderValue * max_Value);            
+            sliderIntValue = Mathf.RoundToInt(sliderValue * max_Value);            
             float fixedValue = (float)sliderIntValue / (float)max_Value;
 
             current_Value.text = "Current: " + sliderIntValue;
@@ -181,6 +183,16 @@ namespace UnityEngine.XR.Content.Interaction
                     max_Value = 15;
                     break;
             }
+        }
+
+        public void UpdateTaskTarget(int i)
+        {
+
+        }
+
+        public void ResetTaskTarget()
+        {
+
         }
 
         void OnValidate()

@@ -793,6 +793,7 @@ MonoBehaviour:
   current_Value: {fileID: 0}
   max_ValueUI: {fileID: 0}
   max_Value: 5
+  sliderIntValue: 0
 --- !u!114 &99775614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2358,7 +2359,7 @@ MonoBehaviour:
   m_ClampedMotion: 1
   m_MaxAngle: 270
   m_MinAngle: 0
-  m_AngleIncrement: 54
+  m_AngleIncrement: 27
   m_PositionTrackedRadius: 0.1
   m_TwistSensitivity: 1.5
   m_OnValueChange:
@@ -3803,6 +3804,7 @@ MonoBehaviour:
   current_Value: {fileID: 165845690}
   max_ValueUI: {fileID: 125237872}
   max_Value: 5
+  sliderIntValue: 0
 --- !u!65 &542815041
 BoxCollider:
   m_ObjectHideFlags: 0
