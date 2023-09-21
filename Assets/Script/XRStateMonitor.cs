@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class XRStateMonitor : MonoBehaviour
 {
 
-    [SerializedField] private TextMeshProUGUI currentPlayerUI; 
-    [SerializedField] private TextMeshProUGUI currentPanelUI; 
-    [SerializedField] private TextMeshProUGUI currentTaskUI; 
-    [SerializedField] private TextMeshProUGUI currentControllerUI; 
-    [SerializedField] private TextMeshProUGUI currentTimeUI; 
-    [SerializedField] private TextMeshProUGUI currentValueUI;
-    [SerializedField] private TextMeshProUGUI currentInteractionUI; 
+    [SerializeField] private TextMeshProUGUI currentPlayerUI; 
+    [SerializeField] private TextMeshProUGUI currentPanelUI; 
+    [SerializeField] private TextMeshProUGUI currentTaskUI; 
+    [SerializeField] private TextMeshProUGUI currentControllerUI; 
+    [SerializeField] private TextMeshProUGUI currentTimeUI; 
+    [SerializeField] private TextMeshProUGUI currentValueUI;
+    [SerializeField] private TextMeshProUGUI currentInteractionUI; 
 
     private string currentPlayer; 
     private string currentPanel; 
