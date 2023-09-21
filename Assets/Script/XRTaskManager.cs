@@ -117,6 +117,10 @@ public class XRTaskManager : MonoBehaviour
         // check currentTask finished before -> binding with button state? 
         DiscardTask(currentTask); 
         currentTask++; 
+        if (currentTask == 4)
+            m_PanelManager.SetActivePanel(1); 
+        if (currentTask == 7)
+            m_PanelManager.SetActivePanel(2); 
         DisplayTask(currentTask); 
     }
 
