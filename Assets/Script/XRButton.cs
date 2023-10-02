@@ -71,9 +71,10 @@ public class XRButton : MonoBehaviour
         return this.countValue; 
     }
 
-    public void ResetTaskTarget()
+    public void ResetTaskValue()
     {
-
+        countValue = 0; 
+        count.text = "Count: " + countValue; 
     }
 
 /*     void UpdatePerSecond()

@@ -440,10 +440,10 @@ namespace UnityEngine.XR.Content.Interaction
                     m_AngleIncrement = 90.0f;
                     break;
                 case FinenessLevel.Medium:
-                    m_AngleIncrement = 54.0f;
+                    m_AngleIncrement = 45.0f;
                     break;
                 case FinenessLevel.High:
-                    m_AngleIncrement = 27.0f;
+                    m_AngleIncrement = 30.0f;
                     break;
             }
         }
@@ -452,15 +452,13 @@ namespace UnityEngine.XR.Content.Interaction
         {
             return m_AngleIncrement; 
         }
-        public void UpdateTaskTarget(int i)
-        {
 
+        public void ResetTaskValue()
+        {
+            m_Value = 0.0f; 
+            current_Value.text = "Current: " + m_Value.ToString();
         }
 
-        public void ResetTaskTarget()
-        {
-
-        }
 
         void OnValidate()
         {

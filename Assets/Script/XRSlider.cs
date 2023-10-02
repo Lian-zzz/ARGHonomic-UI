@@ -185,14 +185,10 @@ namespace UnityEngine.XR.Content.Interaction
             }
         }
 
-        public void UpdateTaskTarget(int i)
+
+        public void ResetTaskValue()
         {
-
-        }
-
-        public void ResetTaskTarget()
-        {
-
+            m_Value = 0.0f; 
         }
 
         void OnValidate()

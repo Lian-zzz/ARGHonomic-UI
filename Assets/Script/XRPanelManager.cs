@@ -48,6 +48,11 @@ public class XRPanelManager : MonoBehaviour
         currentPanel = i;
     }
 
+    public int GetCurrentPanel() 
+    {
+        return currentPanel; 
+    }
+
 
     
 }

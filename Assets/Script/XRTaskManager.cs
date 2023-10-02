@@ -36,11 +36,13 @@ public class XRTaskManager : MonoBehaviour
     void Update()
     {
         UpdateTaskStatus();
+
+        nextButton.enabled = currentTaskFinished;
     }
 
     public void UpdateTaskStatus()
     {
-        if ( m_Button.GetCountValue() == buttonTargetCount || 
+        if ( m_Button.GetCountValue() >= buttonTargetCount || 
              m_Slider.sliderIntValue == sliderTargetValue || 
              m_Knob.value == (float)knobTargetValue / m_Knob.GetAngleIncrement() )
             currentTaskFinished = true; 
@@ -70,43 +72,43 @@ public class XRTaskManager : MonoBehaviour
                 taskTitle.text = "Task 4 - Slider Fineness Level Low"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.Low);
-                sliderTargetValue = 4; 
-                m_Slider.UpdateTaskTarget(sliderTargetValue); 
+                sliderTargetValue = 3; 
+                //m_Slider.UpdateTaskTarget(sliderTargetValue); 
                 break; 
             case 5: 
                 taskTitle.text = "Task 5 - Slider Fineness Level Medium"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.Medium);
-                sliderTargetValue = 7; 
-                m_Slider.UpdateTaskTarget(sliderTargetValue); 
+                sliderTargetValue = 6; 
+                //m_Slider.UpdateTaskTarget(sliderTargetValue); 
                 break; 
             case 6:     
                 taskTitle.text = "Task 6 - Slider Fineness Level High"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.High);
                 sliderTargetValue = 9; 
-                m_Slider.UpdateTaskTarget(sliderTargetValue); 
+                //m_Slider.UpdateTaskTarget(sliderTargetValue); 
                 break; 
             case 7:     
                 taskTitle.text = "Task 7 - Knob Fineness Level Low"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Medium);
                 knobTargetValue = 2; 
-                m_Knob.UpdateTaskTarget(knobTargetValue); 
+                //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
             case 8:     
                 taskTitle.text = "Task 8 - Knob Fineness Level Medium"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Medium);
-                knobTargetValue = 3; 
-                m_Knob.UpdateTaskTarget(knobTargetValue); 
+                knobTargetValue = 4; 
+                //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
             case 9:     
                 taskTitle.text = "Task 9 - Knob Fineness Level High"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.High);
-                knobTargetValue = 7; 
-                m_Knob.UpdateTaskTarget(knobTargetValue); 
+                knobTargetValue = 6; 
+                //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
         }   
     }
@@ -129,18 +131,37 @@ public class XRTaskManager : MonoBehaviour
         taskTitle.text = ""; 
         taskContent.text = ""; 
         if (i >= 1 & i <= 3)
-            m_Button.ResetTaskTarget(); 
+            m_Button.ResetTaskValue(); 
         if (i >= 4 & i <= 6)
         {
-            m_Slider.ResetTaskTarget(); 
+            m_Slider.ResetTaskValue(); 
             sliderTargetValue = -1; 
         }
         if (i >= 7 & i <= 9)
         {
-            m_Knob.ResetTaskTarget();
+            m_Knob.ResetTaskValue(); 
             knobTargetValue = -1; 
         }
     }
+
+    public int GetCurrentTask()
+    {
+        return currentTask; 
+    }
     
+    public int GetCurrentValue()
+    {
+        if (currentTask >= 1 & currentTask <= 3)
+            return m_Button.GetCountValue(); 
+        if (currentTask >= 4 & currentTask <= 6)
+        {
+            return m_Slider.sliderIntValue; 
+        }
+        if (currentTask >= 7 & currentTask <= 9)
+        {
+            return (int)m_Knob.value;
+        }
+        return -1; 
+    }
 
 }
