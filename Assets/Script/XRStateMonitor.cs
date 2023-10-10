@@ -17,8 +17,6 @@ public class XRStateMonitor : MonoBehaviour
     [SerializeField] private XRTaskManager m_TaskManager; 
     [SerializeField] private XRPanelManager m_PanelManager; 
 
-    private float m_time = 0.0f; 
-
     private string currentPlayer; 
     private string currentPanel; 
     private string currentTask; 
@@ -39,15 +37,17 @@ public class XRStateMonitor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_time += Time.deltaTime;
+        
     }
 
     void UpdateValues()
     {
+        
         currentPanel = m_PanelManager.GetCurrentPanel().ToString(); 
         currentTask = m_TaskManager.GetCurrentTask().ToString(); 
-        currentTime = m_time.ToString(); 
+        //unscaled time so that it would not be affected by performance lag etc. 
+        currentTime = Time.unscaledTime.ToString(); 
         currentValue = m_TaskManager.GetCurrentValue().ToString(); 
-  
+
     }
 }
