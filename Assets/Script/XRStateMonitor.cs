@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 using TMPro;
 
 public class XRStateMonitor : MonoBehaviour
@@ -16,14 +17,17 @@ public class XRStateMonitor : MonoBehaviour
 
     [SerializeField] private XRTaskManager m_TaskManager; 
     [SerializeField] private XRPanelManager m_PanelManager; 
+    [SerializeField] private XRPointerHandler m_PointerHandler; 
 
-    private string currentPlayer; 
-    private string currentPanel; 
-    private string currentTask; 
-    private string currentController; 
-    private string currentTime; 
-    private string currentValue;
-    private string currentInteraction; 
+    private string _currentPlayer; 
+    private string _currentPanel; 
+    private string _currentTask; 
+    private string _currentController; 
+    private string _currentTime; 
+    private string _currentValue;
+    private string _currentInteraction; 
+
+    private InputData _inputData;
 
     
 
@@ -37,17 +41,29 @@ public class XRStateMonitor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateValues();
     }
 
     void UpdateValues()
     {
+        // _currentPlayer = 
         
-        currentPanel = m_PanelManager.GetCurrentPanel().ToString(); 
-        currentTask = m_TaskManager.GetCurrentTask().ToString(); 
+        //_currentPanel = m_PanelManager.GetCurrentPanel().ToString(); 
+        //_currentTask = m_TaskManager.GetCurrentTask().ToString(); 
         //unscaled time so that it would not be affected by performance lag etc. 
-        currentTime = Time.unscaledTime.ToString(); 
-        currentValue = m_TaskManager.GetCurrentValue().ToString(); 
+        //_currentTime = Time.unscaledTime.ToString(); 
+        //_currentValue = m_TaskManager.GetCurrentValue().ToString(); 
+
+        //_currentController = m_PointerHandler.GetCurrentController();
+
+        currentPanelUI.text = m_PanelManager.GetCurrentPanel().ToString(); 
+        currentTaskUI.text = m_TaskManager.GetCurrentTask().ToString(); 
+        currentTimeUI.text = Time.unscaledTime.ToString(); 
+        currentValueUI.text = m_TaskManager.GetCurrentValue().ToString(); 
+        currentControllerUI.text = m_PointerHandler.GetCurrentController();
 
     }
+
+
+
 }

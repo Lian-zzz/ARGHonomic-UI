@@ -24,7 +24,9 @@ public class XRTaskManager : MonoBehaviour
 
     void Start()
     {
+        
         currentTaskFinished = false;
+        nextButton.onClick.AddListener(() => NextTask());
         currentTask = 1;
         DisplayTask(currentTask);
 
@@ -44,7 +46,7 @@ public class XRTaskManager : MonoBehaviour
     {
         if ( m_Button.GetCountValue() >= buttonTargetCount || 
              m_Slider.sliderIntValue == sliderTargetValue || 
-             m_Knob.value == (float)knobTargetValue / m_Knob.GetAngleIncrement() )
+             m_Knob.knobIntValue == knobTargetValue )
             currentTaskFinished = true; 
         else 
             currentTaskFinished = false; 
@@ -92,22 +94,22 @@ public class XRTaskManager : MonoBehaviour
             case 7:     
                 taskTitle.text = "Task 7 - Knob Fineness Level Low"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
-                m_Knob.UpdateFineness(FinenessLevel.Medium);
-                knobTargetValue = 2; 
+                m_Knob.UpdateFineness(FinenessLevel.Low);
+                knobTargetValue = 66; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
             case 8:     
                 taskTitle.text = "Task 8 - Knob Fineness Level Medium"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Medium);
-                knobTargetValue = 4; 
+                knobTargetValue = 66; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
             case 9:     
                 taskTitle.text = "Task 9 - Knob Fineness Level High"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.High);
-                knobTargetValue = 6; 
+                knobTargetValue = 66; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
         }   
@@ -116,14 +118,18 @@ public class XRTaskManager : MonoBehaviour
     
     public void NextTask()
     {
-        // check currentTask finished before -> binding with button state? 
-        DiscardTask(currentTask); 
-        currentTask++; 
-        if (currentTask == 4)
-            m_PanelManager.SetActivePanel(1); 
-        if (currentTask == 7)
-            m_PanelManager.SetActivePanel(2); 
-        DisplayTask(currentTask); 
+        if (currentTaskFinished == true && currentTask < 9)
+        {
+            // check currentTask finished before -> binding with button state? 
+            DiscardTask(currentTask); 
+            currentTask++; 
+            if (currentTask == 4)
+                m_PanelManager.SetActivePanel(1); 
+            if (currentTask == 7)
+                m_PanelManager.SetActivePanel(2); 
+            DisplayTask(currentTask); 
+        }
+        
     }
 
     public void DiscardTask(int i)
@@ -159,7 +165,7 @@ public class XRTaskManager : MonoBehaviour
         }
         if (currentTask >= 7 & currentTask <= 9)
         {
-            return (int)m_Knob.value;
+            return m_Knob.knobIntValue;
         }
         return -1; 
     }

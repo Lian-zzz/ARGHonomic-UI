@@ -189,6 +189,7 @@ namespace UnityEngine.XR.Content.Interaction
         public void ResetTaskValue()
         {
             m_Value = 0.0f; 
+            SetSliderPosition(m_Value);
         }
 
         void OnValidate()

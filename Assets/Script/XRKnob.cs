@@ -196,6 +196,7 @@ namespace UnityEngine.XR.Content.Interaction
         public ValueChangeEvent onValueChange => m_OnValueChange;
 
         private Outline outline; 
+        public int knobIntValue; 
 
         void Start()
         {
@@ -347,7 +348,9 @@ namespace UnityEngine.XR.Content.Interaction
             // Reverse to get value
             var knobValue = (knobRotation - m_MinAngle) / (m_MaxAngle - m_MinAngle);
             SetValue(knobValue);
-            current_Value.text = "Current: " + m_Value.ToString();
+            
+            knobIntValue = (int)(m_Value * 100);
+            current_Value.text = "Current: " + knobIntValue.ToString();
         }
 
         void SetKnobRotation(float angle)
@@ -456,7 +459,8 @@ namespace UnityEngine.XR.Content.Interaction
         public void ResetTaskValue()
         {
             m_Value = 0.0f; 
-            current_Value.text = "Current: " + m_Value.ToString();
+            SetKnobRotation(m_Value);
+            current_Value.text = "Current: 0";
         }
 
 
