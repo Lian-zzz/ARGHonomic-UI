@@ -183,6 +183,7 @@ namespace UnityEngine.XR.Content.Interaction
                     max_Value = 15;
                     break;
             }
+            max_ValueUI.text = "Max: " + max_Value;
         }
 
 
@@ -190,6 +191,7 @@ namespace UnityEngine.XR.Content.Interaction
         {
             m_Value = 0.0f; 
             SetSliderPosition(m_Value);
+            current_Value.text = "Current: 0"; 
         }
 
         void OnValidate()

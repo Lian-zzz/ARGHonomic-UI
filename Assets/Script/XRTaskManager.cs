@@ -129,7 +129,6 @@ public class XRTaskManager : MonoBehaviour
                 m_PanelManager.SetActivePanel(2); 
             DisplayTask(currentTask); 
         }
-        
     }
 
     public void DiscardTask(int i)
