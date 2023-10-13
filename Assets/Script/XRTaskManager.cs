@@ -55,43 +55,63 @@ public class XRTaskManager : MonoBehaviour
     {
         switch(i)
         {
-            case 1: 
-                taskTitle.text = "Task 1 - Button Fineness Level Low"; 
-                taskContent.text = "Please click the button below for five times."; 
-                m_Button.UpdateFineness(FinenessLevel.Low); 
-                break; 
-            case 2: 
-                taskTitle.text = "Task 2 - Button Fineness Level Medium"; 
-                taskContent.text = "Please click the button below for five times."; 
-                m_Button.UpdateFineness(FinenessLevel.Medium); 
-                break; 
-            case 3: 
-                taskTitle.text = "Task 3 - Button Fineness Level High"; 
-                taskContent.text = "Please click the button below for five times."; 
-                m_Button.UpdateFineness(FinenessLevel.High); 
-                break; 
-            case 4: 
-                taskTitle.text = "Task 4 - Slider Fineness Level Low"; 
+            case 1: // slider fl: low, target: 0,6 
+                taskTitle.text = "Task 1 - Slider Fineness Level Low"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.Low);
                 sliderTargetValue = 3; 
                 //m_Slider.UpdateTaskTarget(sliderTargetValue); 
                 break; 
-            case 5: 
-                taskTitle.text = "Task 5 - Slider Fineness Level Medium"; 
+            case 2: // slider fl: m, target: 0,6 
+                taskTitle.text = "Task 2 - Slider Fineness Level Medium"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.Medium);
                 sliderTargetValue = 6; 
                 //m_Slider.UpdateTaskTarget(sliderTargetValue); 
                 break; 
-            case 6:     
-                taskTitle.text = "Task 6 - Slider Fineness Level High"; 
+            case 3: // slider fl: h, target: 0,6     
+                taskTitle.text = "Task 3 - Slider Fineness Level High"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.High);
                 sliderTargetValue = 9; 
                 //m_Slider.UpdateTaskTarget(sliderTargetValue); 
                 break; 
-            case 7:     
+            case 4:  // slider fl: e, target: 0,6    
+                taskTitle.text = "Task 4 - Slider Fineness Level Extreme"; 
+                taskContent.text = "Please move the slider to the highlighted target."; 
+                m_Slider.UpdateFineness(FinenessLevel.High);
+                sliderTargetValue = 60; 
+                //m_Slider.UpdateTaskTarget(sliderTargetValue); 
+                break; 
+            case 5: // slider fl: low, target: 0,2 
+                taskTitle.text = "Task 5 - Slider Fineness Level Low"; 
+                taskContent.text = "Please move the slider to the highlighted target."; 
+                m_Slider.UpdateFineness(FinenessLevel.Low);
+                sliderTargetValue = 1; 
+                //m_Slider.UpdateTaskTarget(sliderTargetValue); 
+                break; 
+            case 6: // slider fl: m, target: 0,2 
+                taskTitle.text = "Task 6 - Slider Fineness Level Medium"; 
+                taskContent.text = "Please move the slider to the highlighted target."; 
+                m_Slider.UpdateFineness(FinenessLevel.Medium);
+                sliderTargetValue = 2; 
+                //m_Slider.UpdateTaskTarget(sliderTargetValue); 
+                break; 
+            case 7: // slider fl: h, target: 0,2     
+                taskTitle.text = "Task 7 - Slider Fineness Level High"; 
+                taskContent.text = "Please move the slider to the highlighted target."; 
+                m_Slider.UpdateFineness(FinenessLevel.High);
+                sliderTargetValue = 3; 
+                //m_Slider.UpdateTaskTarget(sliderTargetValue); 
+                break; 
+            case 8:  // slider fl: e, target: 0,2   
+                taskTitle.text = "Task 8 - Slider Fineness Level Extreme"; 
+                taskContent.text = "Please move the slider to the highlighted target."; 
+                m_Slider.UpdateFineness(FinenessLevel.High);
+                sliderTargetValue = 20; 
+                //m_Slider.UpdateTaskTarget(sliderTargetValue); 
+                break; 
+            case 4:     
                 taskTitle.text = "Task 7 - Knob Fineness Level Low"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Low);

@@ -36,8 +36,9 @@ namespace UnityEngine.XR.Content.Interaction
 
         [SerializeField] 
         TextMeshProUGUI current_Value; 
-        [SerializeField] 
-        TextMeshProUGUI max_ValueUI; 
+        //[SerializeField] 
+        //TextMeshProUGUI max_ValueUI; 
+        //TextMeshProUGUI fineness_LevelUI; 
         [SerializeField] 
         int max_Value; 
 
@@ -67,7 +68,7 @@ namespace UnityEngine.XR.Content.Interaction
 
         void Start()
         {
-            max_ValueUI.text = "Max: " + max_Value;
+            //max_ValueUI.text = "Max: " + max_Value;
 
             SetValue(m_Value);
             SetSliderPosition(m_Value);
@@ -182,8 +183,11 @@ namespace UnityEngine.XR.Content.Interaction
                 case FinenessLevel.High:
                     max_Value = 15;
                     break;
+                case FinenessLevel.Extreme: 
+                    max_Value = 100; 
+
             }
-            max_ValueUI.text = "Max: " + max_Value;
+            //max_ValueUI.text = "Max: " + max_Value;
         }
 
 
