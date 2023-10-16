@@ -47,6 +47,9 @@ public class XRStateMonitor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
+        // time format should be with point instead of comma -> could be problematic in .csv files
+        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+
         _inputData = GetComponent<InputData>();
         
         writer = new StreamWriter(GetPath(), true);

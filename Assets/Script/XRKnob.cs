@@ -198,6 +198,8 @@ namespace UnityEngine.XR.Content.Interaction
         private Outline outline; 
         public int knobIntValue; 
 
+        [SerializeField] private GameObject[] targets;
+
         void Start()
         {
             SetValue(m_Value);
@@ -349,7 +351,7 @@ namespace UnityEngine.XR.Content.Interaction
             var knobValue = (knobRotation - m_MinAngle) / (m_MaxAngle - m_MinAngle);
             SetValue(knobValue);
             
-            knobIntValue = (int)(m_Value * 100);
+            knobIntValue = (int)(m_Value * 270 / m_AngleIncrement);
             current_Value.text = "Current: " + knobIntValue.ToString();
         }
 
@@ -448,6 +450,9 @@ namespace UnityEngine.XR.Content.Interaction
                 case FinenessLevel.High:
                     m_AngleIncrement = 30.0f;
                     break;
+                case FinenessLevel.Extreme:
+                    m_AngleIncrement = 0.1f;
+                    break;
             }
         }
 
@@ -463,7 +468,18 @@ namespace UnityEngine.XR.Content.Interaction
             current_Value.text = "Current: 0";
         }
 
-
+        public void UpdateTaskTarget(int id)
+        {
+            for (int i = 0; i < targets.Length ; i++)
+            {
+                if (i == id)
+                {
+                    targets[i].SetActive(true); 
+                }
+                else 
+                    targets[i].SetActive(false); 
+            }
+        }
         void OnValidate()
         {
             if (m_ClampedMotion)

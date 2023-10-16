@@ -46,6 +46,9 @@ namespace UnityEngine.XR.Content.Interaction
 
         private Outline outline; 
 
+        [SerializeField] private GameObject[] targets;
+
+
         /// <summary>
         /// The value of the slider
         /// </summary>
@@ -185,6 +188,7 @@ namespace UnityEngine.XR.Content.Interaction
                     break;
                 case FinenessLevel.Extreme: 
                     max_Value = 100; 
+                    break;
 
             }
             //max_ValueUI.text = "Max: " + max_Value;
@@ -196,6 +200,19 @@ namespace UnityEngine.XR.Content.Interaction
             m_Value = 0.0f; 
             SetSliderPosition(m_Value);
             current_Value.text = "Current: 0"; 
+        }
+
+        public void UpdateTaskTarget(int id)
+        {
+            for (int i = 0; i < targets.Length ; i++)
+            {
+                if (i == id)
+                {
+                    targets[i].SetActive(true); 
+                }
+                else 
+                    targets[i].SetActive(false); 
+            }
         }
 
         void OnValidate()
