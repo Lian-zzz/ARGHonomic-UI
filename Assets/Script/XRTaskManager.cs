@@ -7,6 +7,7 @@ using TMPro;
 public class XRTaskManager : MonoBehaviour 
 {
     [SerializeField] private XRPanelManager m_PanelManager;
+    [SerializeField] private XRProgressManager m_ProgressManager; 
     [SerializeField] private TextMeshProUGUI taskTitle; 
     [SerializeField] private TextMeshProUGUI taskContent; 
     [SerializeField] private Button nextButton; 
@@ -242,6 +243,8 @@ public class XRTaskManager : MonoBehaviour
         {
             // check currentTask finished before -> binding with button state? 
             DiscardTask(currentTask); 
+            // task id starts from 1, while in tasks array-id starts from 0
+            m_ProgressManager.LightUpTask(currentTask - 1 );
             currentTask++; 
             if (currentTask == 13)
                 m_PanelManager.SetActivePanel(1); 

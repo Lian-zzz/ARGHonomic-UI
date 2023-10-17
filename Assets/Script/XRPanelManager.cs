@@ -7,7 +7,7 @@ using TMPro;
 public class XRPanelManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] panels;
-    [SerializeField] private Button[] buttons;
+    //[SerializeField] private Button[] buttons;
 
     [SerializeField]
     [Tooltip("Moving speed of the panels")]
@@ -31,7 +31,7 @@ public class XRPanelManager : MonoBehaviour
     public void SetActivePanel(int i)
     {
         LeanTween.move(panels[i], activePosition, speed); // if i < panels.length
-        buttons[i].colors = ColorBlock.defaultColorBlock; // test color change 
+        //buttons[i].colors = ColorBlock.defaultColorBlock; // test color change 
 
         for (int j= 0; j < panels.Length; j++)
         {
@@ -39,9 +39,9 @@ public class XRPanelManager : MonoBehaviour
             {
                 LeanTween.move(panels[j], inactivePosition, speed); 
 
-                ColorBlock cb = buttons[j].colors;
-                cb.normalColor = inactiveColor;
-                buttons[j].colors = cb;
+                //ColorBlock cb = buttons[j].colors;
+                //cb.normalColor = inactiveColor;
+                //buttons[j].colors = cb;
             }
         }
 

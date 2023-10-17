@@ -47,7 +47,7 @@ public class XRStateMonitor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
-        // time format should be with point instead of comma -> could be problematic in .csv files
+        // time format should be with point instead of comma -> otherwise could be problematic in .csv files
         System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
         _inputData = GetComponent<InputData>();
@@ -68,10 +68,7 @@ public class XRStateMonitor : MonoBehaviour
     void Update()
     {
         UpdateValues();
-        if (leftGrip || leftTrigger || rightGrip || rightTrigger)
-        { 
-            WriteValues();
-        }
+        
     }
 
     void UpdateValues()
@@ -102,20 +99,24 @@ public class XRStateMonitor : MonoBehaviour
 
     }
 
-    void WriteValues()
+    public void WriteValues()
     {
-        log[0] = currentPlayerUI.text; 
-        log[1] = currentPanelUI.text;
-        log[2] = currentTaskUI.text;
-        log[3] = currentLeftControllerStateUI.text;
-        log[4] = currentRightControllerStateUI.text;
-        log[5] = currentTimeUI.text;
-        log[6] = currentValueUI.text;
-        log[7] = currentInputUI.text;
+        if (leftGrip || leftTrigger || rightGrip || rightTrigger)
+        { 
+            log[0] = currentPlayerUI.text; 
+            log[1] = currentPanelUI.text;
+            log[2] = currentTaskUI.text;
+            log[3] = currentLeftControllerStateUI.text;
+            log[4] = currentRightControllerStateUI.text;
+            log[5] = currentTimeUI.text;
+            log[6] = currentValueUI.text;
+            log[7] = currentInputUI.text;
 
-        string line = string.Join(",", log); 
-        writer.WriteLine(line, true);
-        writer.Flush();  
+            
+            string line = string.Join(",", log); 
+            writer.WriteLine(line, true);
+            writer.Flush();  
+        }
     }
 
     private string GetCurrentInput()

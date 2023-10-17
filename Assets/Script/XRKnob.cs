@@ -451,7 +451,7 @@ namespace UnityEngine.XR.Content.Interaction
                     m_AngleIncrement = 30.0f;
                     break;
                 case FinenessLevel.Extreme:
-                    m_AngleIncrement = 0.1f;
+                    m_AngleIncrement = 0.27f;
                     break;
             }
         }
