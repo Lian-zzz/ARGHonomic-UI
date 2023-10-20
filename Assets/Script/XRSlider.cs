@@ -160,8 +160,11 @@ namespace UnityEngine.XR.Content.Interaction
 
         void SetValue(float value)
         {
+            int old_int = Mathf.RoundToInt(m_Value * max_Value);
+            int new_int = Mathf.RoundToInt(value * max_Value);
             m_Value = value;
-            m_OnValueChange.Invoke(m_Value);
+            if (old_int !=new_int)
+                m_OnValueChange.Invoke(m_Value);
         }
 
         void OnDrawGizmosSelected()
@@ -187,7 +190,7 @@ namespace UnityEngine.XR.Content.Interaction
                     max_Value = 15;
                     break;
                 case FinenessLevel.Extreme: 
-                    max_Value = 100; 
+                    max_Value = 1000; 
                     break;
 
             }
@@ -198,7 +201,9 @@ namespace UnityEngine.XR.Content.Interaction
         public void ResetTaskValue()
         {
             m_Value = 0.0f; 
+            SetValue(m_Value);
             SetSliderPosition(m_Value);
+            sliderIntValue = 0; 
             current_Value.text = "Current: 0"; 
         }
 

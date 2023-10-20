@@ -18,6 +18,7 @@ public class XRStateMonitor : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentRightControllerStateUI; 
     [SerializeField] private TextMeshProUGUI currentTimeUI; 
     [SerializeField] private TextMeshProUGUI currentValueUI;
+    [SerializeField] private TextMeshProUGUI currentTargetUI;
     [SerializeField] private TextMeshProUGUI currentInputUI; 
 
     [SerializeField] private XRTaskManager m_TaskManager; 
@@ -96,6 +97,8 @@ public class XRStateMonitor : MonoBehaviour
         currentRightControllerStateUI.text = (_inputData._rightController.isValid && rightState) ? "is tracked" : "not tracked"; 
 
         currentInputUI.text = GetCurrentInput();
+
+        currentTargetUI.text = m_TaskManager.GetCurrentTarget().ToString();
 
     }
 

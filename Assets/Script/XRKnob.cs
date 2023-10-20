@@ -380,8 +380,12 @@ namespace UnityEngine.XR.Content.Interaction
                 value = Mathf.InverseLerp(0.0f, angleRange, angle);
             }
 
+            int old_int = (int)(m_Value * 270 / m_AngleIncrement); 
+            int new_int = (int)(value * 270 / m_AngleIncrement);
+
             m_Value = value;
-            m_OnValueChange.Invoke(m_Value);
+            if (old_int !=new_int)
+                m_OnValueChange.Invoke(m_Value);
         }
 
         float ValueToRotation()
@@ -451,7 +455,7 @@ namespace UnityEngine.XR.Content.Interaction
                     m_AngleIncrement = 30.0f;
                     break;
                 case FinenessLevel.Extreme:
-                    m_AngleIncrement = 0.27f;
+                    m_AngleIncrement = 0.3f;
                     break;
             }
         }
@@ -465,6 +469,7 @@ namespace UnityEngine.XR.Content.Interaction
         {
             m_Value = 0.0f; 
             SetKnobRotation(m_Value);
+            knobIntValue = 0; 
             current_Value.text = "Current: 0";
         }
 

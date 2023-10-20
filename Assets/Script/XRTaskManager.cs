@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,17 +13,18 @@ public class XRTaskManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI taskContent; 
     [SerializeField] private Button nextButton; 
 
-    [SerializeField] private XRButton m_Button; 
+    //[SerializeField] private XRButton m_Button; 
     [SerializeField] private UnityEngine.XR.Content.Interaction.XRSlider m_Slider;
     [SerializeField] private UnityEngine.XR.Content.Interaction.XRKnob m_Knob; 
  
     private int currentTask; 
     private bool currentTaskFinished; 
 
-    private int buttonTargetCount; 
-    private int sliderTargetValue; 
-    private int knobTargetValue; 
+    //private int buttonTargetCount; 
+    private int sliderTargetValue = -2; 
+    private int knobTargetValue = -3; 
     //private float knobTargetTolerance; 
+    private int targetTolerance = 0; 
 
     void Start()
     {
@@ -32,9 +34,9 @@ public class XRTaskManager : MonoBehaviour
         currentTask = 1;
         DisplayTask(currentTask);
 
-        buttonTargetCount = 5; 
-        sliderTargetValue = -1; 
-        knobTargetValue = -1;
+        //buttonTargetCount = 5; 
+        //sliderTargetValue = -2; 
+        //knobTargetValue = -3;
     }
 
     void Update()
@@ -46,9 +48,11 @@ public class XRTaskManager : MonoBehaviour
 
     public void UpdateTaskStatus()
     {
-        if ( m_Button.GetCountValue() >= buttonTargetCount || 
-             m_Slider.sliderIntValue == sliderTargetValue || 
-             m_Knob.knobIntValue == knobTargetValue )
+        if ( //m_Slider.sliderIntValue == sliderTargetValue || 
+             //m_Knob.knobIntValue == knobTargetValue )
+             //m_Button.GetCountValue() >= buttonTargetCount
+             Math.Abs(m_Slider.sliderIntValue - sliderTargetValue) <= targetTolerance ||
+             Math.Abs(m_Knob.knobIntValue - knobTargetValue) <= targetTolerance )  
             currentTaskFinished = true; 
         else 
             currentTaskFinished = false; 
@@ -58,10 +62,10 @@ public class XRTaskManager : MonoBehaviour
         switch(i)
         {
             case 1: // slider fl: low, target: 0,6 
+                sliderTargetValue = 3;  
                 taskTitle.text = "Task 1 - Slider Fineness Level Low"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.Low);
-                sliderTargetValue = 3; 
                 m_Slider.UpdateTaskTarget(0); 
                 break; 
             case 2: // slider fl: m, target: 0,6 
@@ -81,11 +85,13 @@ public class XRTaskManager : MonoBehaviour
             case 4:  // slider fl: e, target: 0,6    
                 taskTitle.text = "Task 4 - Slider Fineness Level Extreme"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
-                m_Slider.UpdateFineness(FinenessLevel.High);
-                sliderTargetValue = 60; 
+                m_Slider.UpdateFineness(FinenessLevel.Extreme);
+                sliderTargetValue = 600; 
+                targetTolerance = 3; 
                 //m_Slider.UpdateTaskTarget(sliderTargetValue); 
                 break; 
             case 5: // slider fl: low, target: 0,2 
+                targetTolerance = 0; 
                 taskTitle.text = "Task 5 - Slider Fineness Level Low"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.Low);
@@ -110,10 +116,12 @@ public class XRTaskManager : MonoBehaviour
                 taskTitle.text = "Task 8 - Slider Fineness Level Extreme"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.Extreme);
-                sliderTargetValue = 20; 
+                sliderTargetValue = 200; 
+                targetTolerance = 3; 
                 //m_Slider.UpdateTaskTarget(sliderTargetValue); 
                 break; 
             case 9: // slider fl: low, target: 0,8 
+                targetTolerance = 0; 
                 taskTitle.text = "Task 9 - Slider Fineness Level Low"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.Low);
@@ -138,11 +146,13 @@ public class XRTaskManager : MonoBehaviour
                 taskTitle.text = "Task 12 - Slider Fineness Level Extreme"; 
                 taskContent.text = "Please move the slider to the highlighted target."; 
                 m_Slider.UpdateFineness(FinenessLevel.Extreme);
-                sliderTargetValue = 80; 
+                sliderTargetValue = 800; 
+                targetTolerance = 3; 
                 //m_Slider.UpdateTaskTarget(sliderTargetValue); 
                 break; 
             
             case 13: // knob fl: low, target: 2/3    
+                targetTolerance = 0; 
                 taskTitle.text = "Task 13 - Knob Fineness Level Low"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Low);
@@ -167,11 +177,13 @@ public class XRTaskManager : MonoBehaviour
                 taskTitle.text = "Task 16 - Knob Fineness Level Extreme"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Extreme);
-                knobTargetValue = 66;  // consider the distance? 
+                knobTargetValue = 600;  // consider the distance? 
+                targetTolerance = 3; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
             
             case 17: // knob fl: low, target: 1/3    
+                targetTolerance = 0; 
                 taskTitle.text = "Task 17 - Knob Fineness Level Low"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Low);
@@ -196,11 +208,13 @@ public class XRTaskManager : MonoBehaviour
                 taskTitle.text = "Task 20 - Knob Fineness Level Extreme"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Extreme);
-                knobTargetValue = 33; // consider the distance? 
+                knobTargetValue = 300; // consider the distance? 
+                targetTolerance = 3; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
             
             case 21: // knob fl: low, target: 3/3    
+                targetTolerance = 0; 
                 taskTitle.text = "Task 21 - Knob Fineness Level Low"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Low);
@@ -225,7 +239,8 @@ public class XRTaskManager : MonoBehaviour
                 taskTitle.text = "Task 24 - Knob Fineness Level Extreme"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Extreme);
-                knobTargetValue = 100; // consider the distance? 
+                knobTargetValue = 900; // consider the distance? 
+                targetTolerance = 3; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
 
@@ -249,7 +264,7 @@ public class XRTaskManager : MonoBehaviour
             if (currentTask == 13)
                 m_PanelManager.SetActivePanel(1); 
             if (currentTask == 25)
-                m_PanelManager.SetActivePanel(1); 
+                m_PanelManager.SetActivePanel(2); 
             DisplayTask(currentTask); 
         }
     }
@@ -258,14 +273,12 @@ public class XRTaskManager : MonoBehaviour
     {
         taskTitle.text = ""; 
         taskContent.text = ""; 
-        if (i >= 1 & i <= 3)
-            m_Button.ResetTaskValue(); 
-        if (i >= 4 & i <= 6)
+        if (i >= 1 & i <= 12)
         {
             m_Slider.ResetTaskValue(); 
             sliderTargetValue = -1; 
         }
-        if (i >= 7 & i <= 9)
+        if (i >= 13 & i <= 24)
         {
             m_Knob.ResetTaskValue(); 
             knobTargetValue = -1; 
@@ -279,17 +292,30 @@ public class XRTaskManager : MonoBehaviour
     
     public int GetCurrentValue()
     {
-        if (currentTask >= 1 & currentTask <= 3)
-            return m_Button.GetCountValue(); 
-        if (currentTask >= 4 & currentTask <= 6)
+        if (1 <= currentTask && currentTask <= 12)
         {
             return m_Slider.sliderIntValue; 
         }
-        if (currentTask >= 7 & currentTask <= 9)
+        if (13 <= currentTask && currentTask <=  24)
         {
             return m_Knob.knobIntValue;
         }
-        return -1; 
+        else 
+            return -1; 
+    }
+
+    public int GetCurrentTarget()
+    {
+        if (1 <= currentTask && currentTask <= 12)
+        {
+            return sliderTargetValue; 
+        }
+        if (13 <= currentTask && currentTask <=  24)
+        {
+            return knobTargetValue;
+        }
+        else 
+            return -1; 
     }
 
 }
