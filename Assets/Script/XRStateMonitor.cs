@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR;
 using TMPro;
 
@@ -14,8 +16,8 @@ public class XRStateMonitor : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentPanelUI; 
     [SerializeField] private TextMeshProUGUI currentTaskUI; 
     //[SerializeField] private TextMeshProUGUI currentControllerUI; 
-    [SerializeField] private TextMeshProUGUI currentLeftControllerStateUI; 
-    [SerializeField] private TextMeshProUGUI currentRightControllerStateUI; 
+    //[SerializeField] private TextMeshProUGUI currentLeftControllerStateUI; 
+    //[SerializeField] private TextMeshProUGUI currentRightControllerStateUI; 
     [SerializeField] private TextMeshProUGUI currentTimeUI; 
     [SerializeField] private TextMeshProUGUI currentValueUI;
     [SerializeField] private TextMeshProUGUI currentTargetUI;
@@ -44,6 +46,31 @@ public class XRStateMonitor : MonoBehaviour
     private StreamWriter writer; 
     private string[] log; 
 
+    [Serializable]
+    public class CurrentTaskStateChangedEvent : UnityEvent<bool> { }
+
+    [SerializeField]
+    [Tooltip("Events to Trigger when current task state is changed")]
+    CurrentTaskStateChangedEvent m_CurrrentTaskStateChanged = new CurrentTaskStateChangedEvent(); 
+
+    private bool currentTaskState; 
+
+    public bool CurrentTaskState
+    {
+        get {return currentTaskState; }
+        set {
+            if (currentTaskState != value)
+            {
+                currentTaskState = value; 
+                // when the task state is turning true, we write another extra line
+                if (currentTaskState == true)
+                { 
+                    m_CurrrentTaskStateChanged.Invoke(currentTaskState); 
+                }
+            }
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -57,12 +84,13 @@ public class XRStateMonitor : MonoBehaviour
         writer.WriteLine("Current Player" + "," + 
                         "Current Panel" + "," +
                         "Current Task" + "," +
-                        "Current Left Controller State" + "," +
-                        "Current Right Controller State" + "," +
+                        //"Current Left Controller State" + "," +
+                        //"Current Right Controller State" + "," +
                         "Current Time" + "," +
                         "Current Value" + "," +
+                        "Current Target" + "," +
                         "Current Input" );
-        log = new string[8]; 
+        log = new string[7]; 
     }
 
     // Update is called once per frame
@@ -90,15 +118,19 @@ public class XRStateMonitor : MonoBehaviour
         currentTaskUI.text = m_TaskManager.GetCurrentTask().ToString(); 
         currentTimeUI.text = Time.unscaledTime.ToString(); 
         currentValueUI.text = m_TaskManager.GetCurrentValue().ToString(); 
+        currentTargetUI.text = m_TaskManager.GetCurrentTarget().ToString();
 
+        /*
+        // the tracking of left/right controller state feels unnecessary
         _inputData._leftController.TryGetFeatureValue(CommonUsages.isTracked, out bool leftState); 
         _inputData._rightController.TryGetFeatureValue(CommonUsages.isTracked, out bool rightState); 
         currentLeftControllerStateUI.text = (_inputData._leftController.isValid && leftState) ? "is tracked" : "not tracked"; 
         currentRightControllerStateUI.text = (_inputData._rightController.isValid && rightState) ? "is tracked" : "not tracked"; 
-
+        */
         currentInputUI.text = GetCurrentInput();
 
-        currentTargetUI.text = m_TaskManager.GetCurrentTarget().ToString();
+        CurrentTaskState = m_TaskManager.GetCurrentTaskState(); 
+        
 
     }
 
@@ -109,11 +141,12 @@ public class XRStateMonitor : MonoBehaviour
             log[0] = currentPlayerUI.text; 
             log[1] = currentPanelUI.text;
             log[2] = currentTaskUI.text;
-            log[3] = currentLeftControllerStateUI.text;
-            log[4] = currentRightControllerStateUI.text;
-            log[5] = currentTimeUI.text;
-            log[6] = currentValueUI.text;
-            log[7] = currentInputUI.text;
+            //log[3] = currentLeftControllerStateUI.text;
+            //log[4] = currentRightControllerStateUI.text;
+            log[3] = currentTimeUI.text;
+            log[4] = currentValueUI.text;
+            log[5] = currentTargetUI.text;
+            log[6] = currentInputUI.text;
 
             
             string line = string.Join(",", log); 

@@ -51,8 +51,10 @@ public class XRTaskManager : MonoBehaviour
         if ( //m_Slider.sliderIntValue == sliderTargetValue || 
              //m_Knob.knobIntValue == knobTargetValue )
              //m_Button.GetCountValue() >= buttonTargetCount
-             Math.Abs(m_Slider.sliderIntValue - sliderTargetValue) <= targetTolerance ||
-             Math.Abs(m_Knob.knobIntValue - knobTargetValue) <= targetTolerance )  
+             ( (1 <= currentTask && currentTask <= 12) && 
+             Math.Abs(m_Slider.sliderIntValue - sliderTargetValue) <= targetTolerance ) ||
+             ( (13 <= currentTask && currentTask <= 24) && 
+             Math.Abs(m_Knob.knobIntValue - knobTargetValue) <= targetTolerance ) )  
             currentTaskFinished = true; 
         else 
             currentTaskFinished = false; 
@@ -316,6 +318,11 @@ public class XRTaskManager : MonoBehaviour
         }
         else 
             return -1; 
+    }
+
+    public bool GetCurrentTaskState()
+    {
+        return currentTaskFinished; 
     }
 
 }
