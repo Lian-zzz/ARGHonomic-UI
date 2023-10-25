@@ -351,7 +351,7 @@ namespace UnityEngine.XR.Content.Interaction
             var knobValue = (knobRotation - m_MinAngle) / (m_MaxAngle - m_MinAngle);
             SetValue(knobValue);
             
-            knobIntValue = (int)(m_Value * 270 / m_AngleIncrement);
+            knobIntValue = (int)(m_Value * m_MaxAngle / m_AngleIncrement);
             current_Value.text = "Current: " + knobIntValue.ToString();
         }
 
@@ -380,8 +380,8 @@ namespace UnityEngine.XR.Content.Interaction
                 value = Mathf.InverseLerp(0.0f, angleRange, angle);
             }
 
-            int old_int = (int)(m_Value * 270 / m_AngleIncrement); 
-            int new_int = (int)(value * 270 / m_AngleIncrement);
+            int old_int = (int)(m_Value * m_MaxAngle / m_AngleIncrement); 
+            int new_int = (int)(value * m_MaxAngle / m_AngleIncrement);
 
             m_Value = value;
             if (old_int !=new_int)
@@ -446,16 +446,16 @@ namespace UnityEngine.XR.Content.Interaction
             switch(finenessLevel)
             {
                 case FinenessLevel.Low:
-                    m_AngleIncrement = 90.0f;
+                    m_AngleIncrement = 80.0f;
                     break;
                 case FinenessLevel.Medium:
-                    m_AngleIncrement = 45.0f;
+                    m_AngleIncrement = 40.0f;
                     break;
                 case FinenessLevel.High:
-                    m_AngleIncrement = 30.0f;
+                    m_AngleIncrement = 16.0f;
                     break;
                 case FinenessLevel.Extreme:
-                    m_AngleIncrement = 0.3f;
+                    m_AngleIncrement = 1.0f;
                     break;
             }
         }

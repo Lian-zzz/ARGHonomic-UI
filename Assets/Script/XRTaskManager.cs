@@ -153,7 +153,7 @@ public class XRTaskManager : MonoBehaviour
                 //m_Slider.UpdateTaskTarget(sliderTargetValue); 
                 break; 
             
-            case 13: // knob fl: low, target: 2/3    
+            case 13: // knob fl: low, target: 2/4   
                 targetTolerance = 0; 
                 taskTitle.text = "Task 13 - Knob Fineness Level Low"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
@@ -161,30 +161,30 @@ public class XRTaskManager : MonoBehaviour
                 knobTargetValue = 2; 
                 m_Knob.UpdateTaskTarget(0); 
                 break; 
-            case 14: // knob fl: m, target: 2/3        
+            case 14: // knob fl: m, target: 2/4        
                 taskTitle.text = "Task 14 - Knob Fineness Level Medium"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Medium);
                 knobTargetValue = 4; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
-            case 15: // knob fl: h, target: 2/3        
+            case 15: // knob fl: h, target: 2/4        
                 taskTitle.text = "Task 15 - Knob Fineness Level High"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.High);
-                knobTargetValue = 6; 
+                knobTargetValue = 10; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
-            case 16: // knob fl: e, target: 2/3        
+            case 16: // knob fl: e, target: 2/4        
                 taskTitle.text = "Task 16 - Knob Fineness Level Extreme"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Extreme);
-                knobTargetValue = 600;  // consider the distance? 
+                knobTargetValue = 160;  // consider the distance? 
                 targetTolerance = 3; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
             
-            case 17: // knob fl: low, target: 1/3    
+            case 17: // knob fl: low, target: 1/4    
                 targetTolerance = 0; 
                 taskTitle.text = "Task 17 - Knob Fineness Level Low"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
@@ -192,30 +192,30 @@ public class XRTaskManager : MonoBehaviour
                 knobTargetValue = 1; 
                 m_Knob.UpdateTaskTarget(1); 
                 break; 
-            case 18: // knob fl: m, target: 1/3        
+            case 18: // knob fl: m, target: 1/4        
                 taskTitle.text = "Task 18 - Knob Fineness Level Medium"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Medium);
                 knobTargetValue = 2; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
-            case 19: // knob fl: h, target: 1/3        
+            case 19: // knob fl: h, target: 1/4        
                 taskTitle.text = "Task 19 - Knob Fineness Level High"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.High);
-                knobTargetValue = 3; 
+                knobTargetValue = 5; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
-            case 20: // knob fl: e, target: 1/3        
+            case 20: // knob fl: e, target: 1/4        
                 taskTitle.text = "Task 20 - Knob Fineness Level Extreme"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Extreme);
-                knobTargetValue = 300; // consider the distance? 
+                knobTargetValue = 80; // consider the distance? 
                 targetTolerance = 3; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
             
-            case 21: // knob fl: low, target: 3/3    
+            case 21: // knob fl: low, target: 3/4   
                 targetTolerance = 0; 
                 taskTitle.text = "Task 21 - Knob Fineness Level Low"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
@@ -223,25 +223,25 @@ public class XRTaskManager : MonoBehaviour
                 knobTargetValue = 3; 
                 m_Knob.UpdateTaskTarget(2); 
                 break; 
-            case 22: // knob fl: m, target: 3/3        
+            case 22: // knob fl: m, target: 3/4        
                 taskTitle.text = "Task 22 - Knob Fineness Level Medium"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Medium);
                 knobTargetValue = 6; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
-            case 23: // knob fl: h, target: 3/3        
+            case 23: // knob fl: h, target: 3/4        
                 taskTitle.text = "Task 23 - Knob Fineness Level High"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.High);
-                knobTargetValue = 9; 
+                knobTargetValue = 15; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 
-            case 24: // knob fl: e, target: 3/3        
+            case 24: // knob fl: e, target: 3/4        
                 taskTitle.text = "Task 24 - Knob Fineness Level Extreme"; 
                 taskContent.text = "Please turn the pointer of the knob to the highlighted target."; 
                 m_Knob.UpdateFineness(FinenessLevel.Extreme);
-                knobTargetValue = 900; // consider the distance? 
+                knobTargetValue = 240; // consider the distance? 
                 targetTolerance = 3; 
                 //m_Knob.UpdateTaskTarget(knobTargetValue); 
                 break; 

@@ -48,6 +48,7 @@ namespace UnityEngine.XR.Content.Interaction
 
         [SerializeField] private GameObject[] targets;
 
+        [SerializeField] private GameObject[] scales = new GameObject[3];
 
         /// <summary>
         /// The value of the slider
@@ -136,7 +137,7 @@ namespace UnityEngine.XR.Content.Interaction
             // get the transform from world space to local space
             var localPosition = transform.InverseTransformPoint(m_Interactor.GetAttachTransform(this).position);
             // note: the direction would be inversed without the -... 
-            var sliderValue = Mathf.Clamp01((localPosition.x  - m_MinPosition) / (m_MaxPosition - m_MinPosition));
+            var sliderValue = Mathf.Clamp01((localPosition.x - m_MinPosition) / (m_MaxPosition - m_MinPosition));
             
             
             sliderIntValue = Mathf.RoundToInt(sliderValue * max_Value);            
@@ -182,15 +183,19 @@ namespace UnityEngine.XR.Content.Interaction
             {
                 case FinenessLevel.Low:
                     max_Value = 5;
+                    UpdateScale(0); 
                     break;
                 case FinenessLevel.Medium:
                     max_Value = 10;
+                    UpdateScale(1); 
                     break;
                 case FinenessLevel.High:
                     max_Value = 15;
+                    UpdateScale(2); 
                     break;
                 case FinenessLevel.Extreme: 
                     max_Value = 1000; 
+                    UpdateScale(2); 
                     break;
 
             }
@@ -217,6 +222,28 @@ namespace UnityEngine.XR.Content.Interaction
                 }
                 else 
                     targets[i].SetActive(false); 
+            }
+        }
+
+        public void UpdateScale(int id)
+        {
+            switch(id)
+            {
+                case(0): 
+                    scales[0].SetActive(true); 
+                    scales[1].SetActive(false); 
+                    scales[2].SetActive(false); 
+                    break; 
+                case(1): 
+                    scales[0].SetActive(true); 
+                    scales[1].SetActive(true); 
+                    scales[2].SetActive(false); 
+                    break; 
+                case(2): 
+                    scales[0].SetActive(true); 
+                    scales[1].SetActive(false); 
+                    scales[2].SetActive(true); 
+                    break; 
             }
         }
 

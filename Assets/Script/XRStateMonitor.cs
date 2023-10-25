@@ -130,8 +130,6 @@ public class XRStateMonitor : MonoBehaviour
         currentInputUI.text = GetCurrentInput();
 
         CurrentTaskState = m_TaskManager.GetCurrentTaskState(); 
-        
-
     }
 
     public void WriteValues()
