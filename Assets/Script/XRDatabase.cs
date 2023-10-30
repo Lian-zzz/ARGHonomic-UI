@@ -38,7 +38,7 @@ public class XRDatabase : MonoBehaviour
         IDbConnection dbConnection = new SqliteConnection(dbUri); // 5
         dbConnection.Open(); // 6
 
-        // Create a table for the hit count in the database if it does not exist yet.
+        // Create a table in the database if it does not exist yet.
         IDbCommand dbCommandCreateTable = dbConnection.CreateCommand(); // 6
         dbCommandCreateTable.CommandText = "CREATE TABLE IF NOT EXISTS PlayerTable (id INTEGER PRIMARY KEY, name TEXT )"; // 7
         dbCommandCreateTable.ExecuteReader(); // 8
